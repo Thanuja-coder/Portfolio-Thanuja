@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --card-bg: #ffffff;
+            --primary-color: #2563eb;
+            --secondary-color: #eff6ff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1.page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #111827;
+            font-weight: 800;
+        }
+
+        .note-section {
+            background-color: var(--secondary-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 16px 24px;
+            margin: 20px auto 40px auto;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #3b82f6;
+            text-align: center;
+            max-width: 800px;
+            font-size: 1.05rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+            border-color: #bfdbfe;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin: 0 0 12px 0;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-category {
+            background-color: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .badge-status.completed {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-status.prototype {
+            background-color: #fef9c3;
+            color: #854d0e;
+        }
+
+        .badge-status.ongoing {
+            background-color: #ffedd5;
+            color: #c2410c;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .tech-chip {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .features-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .features-list {
+            margin: 0 0 24px 0;
+            padding-left: 20px;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        .features-list li {
+            margin-bottom: 6px;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: #eff6ff;
+        }
+
+        .btn-disabled {
+            background-color: #f3f4f6;
+            color: #9ca3af;
+            border-color: #e5e7eb;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .legacy-project {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px dashed #cbd5e1;
+            margin-top: 50px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .legacy-project h4 {
+            font-size: 1.3rem;
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .legacy-project img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 40px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: #1d4ed8;
+            transform: translateX(-4px);
+        }
+
+        .back-link::before {
+            content: "← ";
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="page-title">My Projects</h1>
+
+        <div class="note-section">
+            "These projects are built from real-life problems and personal observations. Some prototypes were developed
+            with AI-assisted tools, but the ideas, problem statements, and improvements are original."
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- Project 1 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <h3 class="project-title">StyleMate AI</h3>
+                    <div class="badges">
+                        <span class="badge badge-category">AI / NLP / Fashion Tech</span>
+                        <span class="badge badge-status completed">Completed – Local Demo</span>
+                    </div>
+                </div>
+                <p class="project-desc">
+                    An offline AI fashion assistant that provides outfit suggestions, color combinations, and
+                    budget-friendly recommendations based on a fashion inventory dataset. Designed to run locally with
+                    no OpenAI/Gemini dependency.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-chip">React</span>
+                    <span class="tech-chip">Tailwind CSS</span>
+                    <span class="tech-chip">Python</span>
+                    <span class="tech-chip">FastAPI</span>
+                    <span class="tech-chip">Ollama</span>
+                    <span class="tech-chip">FAISS</span>
+                </div>
+                <div class="features-title">Key Features:</div>
+                <ul class="features-list">
+                    <li>Offline fashion chatbot with custom intent classifier</li>
+                    <li>Outfit suggestions for various occasions</li>
+                    <li>Budget-based product recommendations</li>
+                    <li>Deterministic validation to reduce hallucinations</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="https://github.com/Thanuja-coder/StyleMate-AI-Chatbot" target="_blank"
+                        class="btn btn-outline">GitHub</a>
+                    <span class="btn btn-disabled">Local Demo</span>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <h3 class="project-title">Empathetic AI Interview Coach</h3>
+                    <div class="badges">
+                        <span class="badge badge-category">AI / Career Tech</span>
+                        <span class="badge badge-status completed">Completed – Local Demo</span>
+                    </div>
+                </div>
+                <p class="project-desc">
+                    A voice-and-text based interview preparation web app simulating personalized interview experiences.
+                    Helps students practice with adaptive questions, emotion-aware feedback, and performance reports.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-chip">React</span>
+                    <span class="tech-chip">Tailwind CSS</span>
+                    <span class="tech-chip">Node.js</span>
+                    <span class="tech-chip">Google Gemini API</span>
+                    <span class="tech-chip">Web Speech API</span>
+                </div>
+                <div class="features-title">Key Features:</div>
+                <ul class="features-list">
+                    <li>AI interviewer personas for varying interview types</li>
+                    <li>Real-time emotion/sentiment detection</li>
+                    <li>Adaptive questioning based on user confidence</li>
+                    <li>End-of-interview report with actionable feedback</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="https://github.com/Thanuja-coder/Empathetic-Interview-Coach" target="_blank"
+                        class="btn btn-outline">GitHub</a>
+                    <span class="btn btn-disabled">Local Demo</span>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <h3 class="project-title">KitchenWise AI</h3>
+                    <div class="badges">
+                        <span class="badge badge-category">AI / Productivity</span>
+                        <span class="badge badge-status prototype">Prototype – Deployed</span>
+                    </div>
+                </div>
+                <p class="project-desc">
+                    A smart kitchen management web app designed for Indian households to track groceries, reduce food
+                    waste, plan weekly meals, and create smart shopping lists.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-chip">React 18</span>
+                    <span class="tech-chip">Tailwind CSS</span>
+                    <span class="tech-chip">TanStack Query</span>
+                    <span class="tech-chip">Base44 Platform</span>
+                    <span class="tech-chip">Base44 InvokeLLM</span>
+                </div>
+                <div class="features-title">Key Features:</div>
+                <ul class="features-list">
+                    <li>Smart grocery inventory with expiry alerts</li>
+                    <li>AI recipe finder for authentic Indian cuisines</li>
+                    <li>Ingredient-match scoring based on pantry items</li>
+                    <li>Smart shopping list & restock detection</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="https://github.com/Thanuja-coder/KitchenWise-AI" target="_blank"
+                        class="btn btn-outline">GitHub</a>
+                    <a href="https://kitchen-wise-smart.base44.app" target="_blank" class="btn btn-outline">Live
+                        Demo</a>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <h3 class="project-title">FinSecure</h3>
+                    <div class="badges">
+                        <span class="badge badge-category">FinTech / AI</span>
+                        <span class="badge badge-status ongoing">Ongoing</span>
+                    </div>
+                </div>
+                <p class="project-desc">
+                    A personal finance assistant helping families manage income, expenses, loans, assets, documents, and
+                    reminders securely. Focused on practical rural/semi-urban family finance management.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-chip">React</span>
+                    <span class="tech-chip">FastAPI</span>
+                    <span class="tech-chip">MongoDB</span>
+                    <span class="tech-chip">JWT</span>
+                </div>
+                <div class="features-title">Key Features:</div>
+                <ul class="features-list">
+                    <li>Income, expense, and multiple source tracking</li>
+                    <li>Loan, EMI reminders & asset tracking</li>
+                    <li>Secure document vault with encryption</li>
+                    <li>Dashboard-based financial overview & audit</li>
+                </ul>
+                <div class="card-actions">
+                    <span class="btn btn-disabled">GitHub (Private)</span>
+                    <span class="btn btn-disabled">Not Deployed Yet</span>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Legacy Project Content Preserved -->
+        <div class="legacy-project reveal">
+            <h4>Student Evaluation System (School Project)</h4>
+
+            <p><strong>AIM:</strong> The aim of this computer project is to develop an interactive student performance
+                evaluation system. This system will allow users to input a student's name and retrieve their academic
+                and co-curricular activity data from a MySQL database. The data will then be visually represented
+                through subject-wise bar graphs, allowing for easy assessment of a student's performance in various
+                subjects across multiple tests. Additionally, a pie chart will depict the distribution of marks in
+                co-curricular activities.
+            </p>
+            <img src="Images/Screenshot 2024-10-01 210746.png" alt="Student Evaluation System Display">
+            <div style="margin-top: 15px;">
+                <a href="https://github.com/Thanuja-coder/Student-Evaluation-System-" target="_blank"
+                    class="btn btn-outline">GitHub</a>
+            </div>
+        </div>
+
+        <div>
+            <a href="index.html" class="back-link">Back to Home page</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
