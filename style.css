@@ -72,11 +72,10 @@ section {
 .section-title {
     text-align: center;
     font-size: 2.8rem;
-    margin-bottom: 50px;
+    margin: 0 auto 50px auto;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
+    width: fit-content;
 }
 
 .section-title::after {
