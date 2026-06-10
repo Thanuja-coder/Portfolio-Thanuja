@@ -691,6 +691,17 @@ footer {
         height: 140px;
     }
     
+    header {
+        width: 90%;
+        left: 5%;
+        transform: none;
+        padding: 12px 20px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
     .butterfly {
         display: none;
     }
